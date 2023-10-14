@@ -1,0 +1,83 @@
+name: 'AWS ECS Task Definition Generator Action'
+description: 'Generates an AWS ECS Task Definition'
+inputs:
+  # compatibilities:
+  #   description: 'The launch type compatibility requirements to use with the task.'
+  #   required: false
+  container_definitions:
+    description: 'A list of container definitions that describe the different containers that make up your task.'
+    required: true
+  cpu:
+    description: 'The number of cpu units used by the task.'
+    required: false
+  # deregistered_at:
+  #   description: 'The Unix time stamp for when the task definition was deregistered.'
+  #   required: false
+  # ephemeral_storage:
+  #   description: 'The amount of ephemeral storage to allocate for the task.'
+  #   required: false
+  execution_role_arn:
+    description: 'The Amazon Resource Name (ARN) of the task execution role that grants the Amazon ECS container agent permission to make AWS API calls on your behalf.'
+    required: false
+  family:
+    description: 'The family of your task definition, used as the definition name.'
+    required: false
+  # inference_accelerators:
+  #   description: 'The Elastic Inference accelerators to use for the containers in the task.'
+  #   required: false
+  # ipc_mode:
+  #   description: 'The IPC resource namespace to use for the containers in the task.'
+  #   required: false
+  memory:
+    description: 'The amount of memory (in MiB) used by the task.'
+    required: false
+  network_mode:
+    description: 'The Docker networking mode to use for the containers in the task.'
+    required: false
+  # pid_mode:
+  #   description: 'The process namespace to use for the containers in the task.'
+  #   required: false
+  # placement_constraints:
+  #   description: 'An array of placement constraint objects to use for tasks.'
+  #   required: false
+  # proxy_configuration:
+  #   description: 'The configuration details for the App Mesh proxy.'
+  #   required: false
+  # registered_at:
+  #   description: 'The Unix time stamp for when the task definition was registered.'
+  #   required: false
+  # registered_by:
+  #   description: 'The principal that registered the task definition.'
+  #   required: false
+  # requires_attributes:
+  #   description: 'The task launch types that the task definition was validated against.'
+  #   required: false
+  requires_compatibilities:
+    description: 'The task launch types that the task definition was validated against.'
+    required: false
+  # revision:
+  #   description: 'The revision of the task in a particular family.'
+  #   required: false
+  # runtime_platform:
+  #   description: 'The platform version on which the task is running.'
+  #   required: false
+  # status:
+  #   description: 'The status of the task definition.'
+  #   required: false
+  # task_definition_arn:
+  #   description: 'The full Amazon Resource Name (ARN) of the task definition.'
+  #   required: false
+  task_role_arn:
+    description: 'The short name or full Amazon Resource Name (ARN) of the IAM role that containers in this task can assume.'
+    required: false
+  volumes:
+    description: 'The list of volumes in a task.'
+    required: false
+outputs:
+  task_definition:
+    description: "The path to the file containing the generated task definition."
+  task_definition_raw:
+    description: "The task definition JSON as a string"
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
