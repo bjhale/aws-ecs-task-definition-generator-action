@@ -32,14 +32,14 @@ if(taskRoleArn) {
   taskDefinition.taskRoleArn = taskRoleArn;
 }
 
-const networkMode = core.getInput('network_mode');
+const networkMode = core.getInput('networkMode');
 if(networkMode) {
   taskDefinition.networkMode = networkMode;
 }
 
 const requiresCompatibilities = core.getInput('requiresCompatibilities');
 if(requiresCompatibilities) {
-  taskDefinition.requiresCompatibilities = requiresCompatibilities.split(',');
+  taskDefinition.requiresCompatibilities = requiresCompatibilities.split(',').map( item => item.trim() );
 }
 
 const containerDefinitionFiles = core.getInput('containerDefinitionFiles');
