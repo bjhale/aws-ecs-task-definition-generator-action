@@ -4,9 +4,12 @@ inputs:
   # compatibilities:
   #   description: 'The launch type compatibility requirements to use with the task.'
   #   required: false
-  container_definitions:
+  containerDefinitionFiles:
     description: 'A list of container definitions that describe the different containers that make up your task.'
-    required: true
+    required: false
+  containerDefinitions:
+    description: 'Raw container definitions'
+    required: false
   cpu:
     description: 'The number of cpu units used by the task.'
     required: false
@@ -16,7 +19,7 @@ inputs:
   # ephemeral_storage:
   #   description: 'The amount of ephemeral storage to allocate for the task.'
   #   required: false
-  execution_role_arn:
+  executionRoleArn:
     description: 'The Amazon Resource Name (ARN) of the task execution role that grants the Amazon ECS container agent permission to make AWS API calls on your behalf.'
     required: false
   family:
@@ -31,7 +34,7 @@ inputs:
   memory:
     description: 'The amount of memory (in MiB) used by the task.'
     required: false
-  network_mode:
+  networkMode:
     description: 'The Docker networking mode to use for the containers in the task.'
     required: false
   # pid_mode:
@@ -52,7 +55,7 @@ inputs:
   # requires_attributes:
   #   description: 'The task launch types that the task definition was validated against.'
   #   required: false
-  requires_compatibilities:
+  requiresCompatibilities:
     description: 'The task launch types that the task definition was validated against.'
     required: false
   # revision:
@@ -67,7 +70,7 @@ inputs:
   # task_definition_arn:
   #   description: 'The full Amazon Resource Name (ARN) of the task definition.'
   #   required: false
-  task_role_arn:
+  taskRoleArn:
     description: 'The short name or full Amazon Resource Name (ARN) of the IAM role that containers in this task can assume.'
     required: false
   volumes:

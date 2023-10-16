@@ -5,6 +5,7 @@ import process from 'process';
 import crypto from 'crypto';
 
 let taskDefinition = {};
+let containers = [];
 
 const family = core.getInput('family');
 if(family) {
@@ -21,12 +22,12 @@ if(memory) {
   taskDefinition.memory = memory;
 }
 
-const executionRoleArn = core.getInput('execution_role_arn');
+const executionRoleArn = core.getInput('executionRoleArn');
 if(executionRoleArn) {
   taskDefinition.executionRoleArn = executionRoleArn;
 }
 
-const taskRoleArn = core.getInput('task_role_arn');
+const taskRoleArn = core.getInput('taskRoleArn');
 if(taskRoleArn) {
   taskDefinition.taskRoleArn = taskRoleArn;
 }
@@ -36,20 +37,30 @@ if(networkMode) {
   taskDefinition.networkMode = networkMode;
 }
 
-const requiresCompatibilities = core.getInput('requires_compatibilities');
+const requiresCompatibilities = core.getInput('requiresCompatibilities');
 if(requiresCompatibilities) {
   taskDefinition.requiresCompatibilities = requiresCompatibilities.split(',');
 }
 
-const containerDefinitions = core.getInput('container_definitions');
-if(containerDefinitions) {
-  let containerDefinitionsArray = [];
-  const paths = yaml.parse(containerDefinitions);
+const containerDefinitionFiles = core.getInput('containerDefinitionFiles');
+if(containerDefinitionFiles) {
+  const paths = yaml.parse(containerDefinitionFiles);
   for (const path of paths) {
     const fileContents = fs.readFileSync(path, 'utf8');
-    containerDefinitionsArray.push(yaml.parse(fileContents));
+    containers.push(yaml.parse(fileContents));
   }
-  taskDefinition.containerDefinitions = containerDefinitionsArray;
+}
+
+const containerDefinitions = core.getInput('containerDefinitions');
+if(containerDefinitions) {
+  const definitions = yaml.parse(containerDefinitions);
+  for (const definition of definitions) {
+    containers.push(definition);
+  }
+}
+
+if(containers.length > 0){
+  taskDefinition.containerDefinitions = containers;
 }
 
 console.log("Task Definition: ", JSON.stringify(taskDefinition, null, 2));
