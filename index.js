@@ -37,6 +37,11 @@ if(networkMode) {
   taskDefinition.networkMode = networkMode;
 }
 
+const volumes = core.getInput('volumes');
+if(volumes) {
+  taskDefinition.volumes = yaml.parse(volumes);
+}
+
 const requiresCompatibilities = core.getInput('requiresCompatibilities');
 if(requiresCompatibilities) {
   taskDefinition.requiresCompatibilities = requiresCompatibilities.split(',').map( item => item.trim() );
@@ -58,6 +63,8 @@ if(containerDefinitions) {
     containers.push(definition);
   }
 }
+
+
 
 if(containers.length > 0){
   taskDefinition.containerDefinitions = containers;

@@ -1,0 +1,22 @@
+name: Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Test
+        uses: ./
+        with:
+          cpu: 256
+          memory: 512
+          networkMode: awsvpc
+
+          executionRoleArn: test-execution-role-arn
+          taskRoleArn: test-task-role-arn
+          requiresCompatibilities: FARGATE
+          family: test-family
