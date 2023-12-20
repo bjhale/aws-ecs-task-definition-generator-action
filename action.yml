@@ -16,7 +16,7 @@ inputs:
   # deregistered_at:
   #   description: 'The Unix time stamp for when the task definition was deregistered.'
   #   required: false
-  ephemeral_storage:
+  ephemeralStorage:
     description: 'The amount of ephemeral storage (in GB) to allocate for the task.'
     required: false
   executionRoleArn:
