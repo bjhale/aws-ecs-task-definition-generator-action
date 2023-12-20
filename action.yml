@@ -16,9 +16,9 @@ inputs:
   # deregistered_at:
   #   description: 'The Unix time stamp for when the task definition was deregistered.'
   #   required: false
-  # ephemeral_storage:
-  #   description: 'The amount of ephemeral storage to allocate for the task.'
-  #   required: false
+  ephemeral_storage:
+    description: 'The amount of ephemeral storage (in GB) to allocate for the task.'
+    required: false
   executionRoleArn:
     description: 'The Amazon Resource Name (ARN) of the task execution role that grants the Amazon ECS container agent permission to make AWS API calls on your behalf.'
     required: false

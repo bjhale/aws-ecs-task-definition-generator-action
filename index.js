@@ -37,6 +37,11 @@ if(networkMode) {
   taskDefinition.networkMode = networkMode;
 }
 
+const ephemeralStorage = core.getInput('ephemeralStorage');
+if(ephemeralStorage) {
+  taskDefinition.ephemeralStorage = ephemeralStorage;
+}
+
 const volumes = core.getInput('volumes');
 if(volumes) {
   taskDefinition.volumes = yaml.parse(volumes);
@@ -63,8 +68,6 @@ if(containerDefinitions) {
     containers.push(definition);
   }
 }
-
-
 
 if(containers.length > 0){
   taskDefinition.containerDefinitions = containers;
