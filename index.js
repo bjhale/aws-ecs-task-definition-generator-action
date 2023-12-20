@@ -40,7 +40,7 @@ if(networkMode) {
 const ephemeralStorage = core.getInput('ephemeralStorage');
 if(ephemeralStorage) {
   taskDefinition.ephemeralStorage = {
-    sizeInGiB: ephemeralStorage
+    sizeInGiB: parseInt(ephemeralStorage)
   };
 }
 
